@@ -1,0 +1,36 @@
+.app-wrapper {
+  width: 1920px;
+  display: grid;
+  grid-template-areas:
+    "header header header"
+    "nav content content";
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 2f 10fr;
+  grid-gap: 5px;
+  margin: 0 auto;
+}
+
+.header {
+  grid-area: header;
+  background-color: rgb(228, 22, 211);
+}
+
+.header img {
+  width: 70px;
+}
+.nav {
+  grid-area: nav;
+  background-color: rgb(160, 49, 151);
+}
+
+.nav div {
+  padding: 8px 20px;
+}
+
+.nav div a {
+  color: #fff;
+}
+.content {
+  grid-area: content;
+  background-color: rgb(240, 54, 224);
+}
