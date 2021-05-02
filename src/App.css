@@ -9,5 +9,7 @@
   grid-gap: 5px;
   margin: 0 auto;
 }
-
-
+.app-wrapper-content {
+  grid-area: content;
+  background-color: rgb(240, 54, 224);
+}
