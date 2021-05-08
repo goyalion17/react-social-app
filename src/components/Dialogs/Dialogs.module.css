@@ -4,15 +4,19 @@
 }
 .dialogsItems {
   padding: 10px;
+  color: #fff;
 }
 .dialogsItems .active {
   color: gold;
 }
 
-.dialog {
+.dialogsItems .dialog {
+  color: #fff;
 }
 .messages {
   padding: 10px;
+  color: #fff;
 }
 .message {
+  
 }
