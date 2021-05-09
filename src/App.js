@@ -7,22 +7,23 @@ import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 
-const App = () => {
-  let posts = [
-    { id: 1, message: "Hi, how are you?", likesCount: 15 },
-    { id: 2, message: "It's my first post", likesCount: 35 },
-    { id: 2, message: "It's my first post", likesCount: 35 },
-    { id: 2, message: "It's my first post", likesCount: 35 },
-  ];
-
+const App = (props) => {
   return (
     <BrowserRouter>
       <div className="app-wrapper">
         <Header />
         <Navbar />
         <div className="app-wrapper-content">
-          <Route path="/dialogs" render={() => <Dialogs />} />
-          <Route path="/profile" render={() => <Profile posts={posts}/>} />
+          <Route
+            path="/dialogs"
+            render={() => (
+              <Dialogs dialogs={props.dialogs} messages={props.messages} />
+            )}
+          />
+          <Route
+            path="/profile"
+            render={() => <Profile posts={props.posts} />}
+          />
         </div>
       </div>
     </BrowserRouter>
