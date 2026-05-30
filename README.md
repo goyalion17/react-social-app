@@ -1,70 +1,111 @@
-# Getting Started with Create React App
+# React Social App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A small React social-app demo with a header, a side navigation powered by React
+Router, and a profile page with posts. Originally bootstrapped with Create React
+App (`react-scripts@4`), now fully migrated to a modern Vite + React 19 stack
+with linting, formatting, and unit tests.
 
-## Available Scripts
+## Stack
 
-In the project directory, you can run:
+| Area     | Tool                                                   |
+| -------- | ------------------------------------------------------ |
+| Build    | [Vite 8](https://vitejs.dev/) + `@vitejs/plugin-react` |
+| UI       | React 19                                               |
+| Router   | React Router 7 (`BrowserRouter`, `NavLink`)            |
+| Lint     | ESLint 9 (flat config) + `eslint-plugin-react(-hooks)` |
+| Format   | Prettier 3                                             |
+| Tests    | Vitest 4 + Testing Library                             |
+| Test env | jsdom                                                  |
 
-### `npm start`
+## Security
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+`npm audit` reports **0 vulnerabilities** after the migration. The original
+CRA-based project produced 195 vulnerabilities (19 critical, 54 high, 116
+moderate, 6 low), all coming from outdated `react-scripts@4` transitive
+dependencies.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Requirements
 
-### `npm test`
+- Node.js **>= 22.12** (Vite 8 requirement)
+- npm **>= 10**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Quick start
 
-### `npm run build`
+```bash
+npm install
+npm run dev      # open http://localhost:3000
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Scripts
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+| Script                 | What it does                           |
+| ---------------------- | -------------------------------------- |
+| `npm run dev`          | Start the Vite dev server on port 3000 |
+| `npm run build`        | Build a production bundle into `dist/` |
+| `npm run preview`      | Preview the production build locally   |
+| `npm run lint`         | Run ESLint over the project            |
+| `npm run lint:fix`     | Run ESLint with auto-fix               |
+| `npm run format`       | Apply Prettier to the project          |
+| `npm run format:check` | Check formatting without writing       |
+| `npm run test`         | Run Vitest in watch mode               |
+| `npm run test:run`     | Run Vitest once (used by CI)           |
+| `npm run test:ui`      | Open the Vitest UI                     |
+| `npm run coverage`     | Generate a coverage report             |
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Project structure
 
-### `npm run eject`
+```
+react-social-app/
+├── index.html                # Vite entry HTML
+├── public/                   # Static assets served as-is
+├── src/
+│   ├── main.jsx              # Bootstraps React + BrowserRouter
+│   ├── App.jsx               # Layout + route definitions
+│   ├── App.css               # Layout styles
+│   ├── index.css             # Global styles
+│   ├── components/
+│   │   ├── Header.jsx
+│   │   ├── Header.test.jsx
+│   │   ├── Navbar.jsx
+│   │   └── Navbar.test.jsx
+│   ├── pages/
+│   │   ├── Profile.jsx
+│   │   ├── Messages.jsx
+│   │   ├── News.jsx
+│   │   ├── Music.jsx
+│   │   └── Settings.jsx
+│   └── test/
+│       └── setup.js          # @testing-library/jest-dom + cleanup
+├── eslint.config.js          # ESLint flat config
+├── vite.config.js            # Vite + Vitest config
+└── package.json
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Testing
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Tests live next to the components they cover (`*.test.jsx`). Vitest runs in a
+`jsdom` environment, with `@testing-library/jest-dom` matchers and an automatic
+`cleanup()` after every test (see [`src/test/setup.js`](src/test/setup.js)).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Run all tests once:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```bash
+npm run test:run
+```
 
-## Learn More
+## What changed compared to the original
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Replaced `react-scripts@4` (CRA, deprecated) with **Vite 8 + `@vitejs/plugin-react`**
+- Upgraded **React 17 → 19** (new `createRoot` API, no more global `React` import)
+- Added **React Router v7** with five real routes (`/profile`, `/messages`,
+  `/news`, `/music`, `/settings`) instead of empty `<a href="">` links
+- Replaced the inline base64 JPEG and the broken Webflow image URL with stable
+  `picsum.photos` placeholders, and added `alt` attributes to every `<img>`
+- Fixed a CSS typo (`2f 10fr` → proper grid columns), removed the fixed
+  `1920px` width and added a mobile breakpoint
+- Replaced the broken default CRA test (`renders learn react link`) with real
+  Header and Navbar tests
+- Added **ESLint 9** flat config (`react`, `react-hooks`, `react-refresh`,
+  `prettier`) and **Prettier 3**
+- Added **Vitest 4** + **Testing Library** with a `jsdom` setup
+- Brought `npm audit` from **195 vulnerabilities → 0**
